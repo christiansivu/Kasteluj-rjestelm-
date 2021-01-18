@@ -74,5 +74,35 @@ void loop() {
     }
   Serial.print(analogRead(A0));
   delay(1000);
+
+  if (ruukku2.kosteusMittari ()){
+    pumpON = pumpON | RUUKKU2;
+    }
+    else{ 
+    
+    pumpON = pumpON & ~RUUKKU2 ;
+    }
+  Serial.print(analogRead(A1));
+  delay(1000);
+
+  if (ruukku3.kosteusMittari ()){
+    pumpON = pumpON | RUUKKU3;
+    }
+    else{ 
+    
+    pumpON = pumpON & ~RUUKKU3 ;
+    }
+  Serial.print(analogRead(A2));
+  delay(1000);
+
+  if (ruukku4.kosteusMittari ()){
+    pumpON = pumpON | RUUKKU4;
+    }
+    else{ 
+    
+    pumpON = pumpON & ~RUUKKU4 ;
+    }
+  Serial.print(analogRead(A3));
+  delay(1000);
    
 }
