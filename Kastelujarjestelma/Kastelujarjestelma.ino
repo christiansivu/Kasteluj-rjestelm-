@@ -3,7 +3,7 @@
 ruukku ruukku1(A0,3);
 ruukku ruukku2(A1,4);
 ruukku ruukku3(A2,5);
-ruukku ruukku4(A3,6);
+ruukku ruukku4(A3,6,600);
 
 
 //pumpulle ledit
@@ -17,10 +17,10 @@ int redLED = 13;
 // Pumppu
 #define pumppuOpen  HIGH
 #define pumppuClose LOW
-#define RUUKKU1 1
-#define RUUKKU2 2
-#define RUUKKU3 4
-#define RUUKKU4 8
+#define RUUKKU1 1  // 0001
+#define RUUKKU2 2  // 0010
+#define RUUKKU3 4  // 0100
+#define RUUKKU4 8  // 1000
 
 const int pump = 2;
 
@@ -47,13 +47,11 @@ void Pumppu ()
     if (pumpON == 0){
       
     digitalWrite(pump,pumppuClose);
-    digitalWrite(redLED, LEDOFF);
     digitalWrite(greenLED, LEDON);
     Serial.println(pumpON); 
     }else{
 
-    digitalWrite(pump,pumppuOpen);
-    digitalWrite(redLED, LEDON);
+    digitalWrite(pump,pumppuOpen);  
     digitalWrite(greenLED, LEDOFF);
     Serial.println(pumpON); 
     }

@@ -10,6 +10,15 @@ ruukku::ruukku (int sensor, int valve)
   _valve = valve;
   _thresholdValue = 800;
   }
+ruukku::ruukku (int sensor, int valve, int threshold)
+{
+  pinMode (sensor,INPUT);
+  _sensor = sensor;
+
+  pinMode (valve,OUTPUT);
+  _valve = valve;
+  _thresholdValue = threshold;
+  }
 
 
   bool ruukku::kosteusMittari()

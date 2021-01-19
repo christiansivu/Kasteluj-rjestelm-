@@ -12,6 +12,7 @@ class ruukku
 {
   public:
   ruukku (int sensor, int valve);
+  ruukku (int sensor, int valve,int threshold);
   bool kosteusMittari();
   
   private:
