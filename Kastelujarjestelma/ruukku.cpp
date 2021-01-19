@@ -1,6 +1,12 @@
 #include "Arduino.h"
 #include "ruukku.h"
 
+
+int ruukku::getVal(){
+  return map(_sensorValue,0,1023,0,9);
+  }
+
+
 ruukku::ruukku (int sensor, int valve)
 {
   pinMode (sensor,INPUT);
@@ -25,7 +31,7 @@ ruukku::ruukku (int sensor, int valve, int threshold)
   {
     
   
-  int _sensorValue = analogRead(_sensor);
+  _sensorValue = analogRead(_sensor);
   
   if(_sensorValue < _thresholdValue){
     Serial.println("Ei tarvi vettä ");

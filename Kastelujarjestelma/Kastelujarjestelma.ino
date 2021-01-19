@@ -1,10 +1,13 @@
 #include "ruukku.h"
+#include <LiquidCrystal.h>
 
 ruukku ruukku1(A0,3);
 ruukku ruukku2(A1,4);
 ruukku ruukku3(A2,5);
 ruukku ruukku4(A3,6,600);
 
+const int rs = 12, en = 11, d4 = 10, d5 = 9, d6 = 8, d7 = 7;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
 //pumpulle ledit
 int greenLED = 13;
@@ -38,7 +41,8 @@ void setup() {
   pinMode(pump, OUTPUT);
   
   Serial.begin(9600);
-
+  lcd.begin(16, 2);
+  lcd.print("");
 }
 
 int pumpON=0;
@@ -70,8 +74,7 @@ void loop() {
     
     pumpON = pumpON & ~RUUKKU1 ;
     }
-  Serial.print(analogRead(A0));
-  delay(1000);
+  
 
   if (ruukku2.kosteusMittari ()){
     pumpON = pumpON | RUUKKU2;
@@ -80,8 +83,7 @@ void loop() {
     
     pumpON = pumpON & ~RUUKKU2 ;
     }
-  Serial.print(analogRead(A1));
-  delay(1000);
+  
 
   if (ruukku3.kosteusMittari ()){
     pumpON = pumpON | RUUKKU3;
@@ -90,8 +92,7 @@ void loop() {
     
     pumpON = pumpON & ~RUUKKU3 ;
     }
-  Serial.print(analogRead(A2));
-  delay(1000);
+  
 
   if (ruukku4.kosteusMittari ()){
     pumpON = pumpON | RUUKKU4;
@@ -100,7 +101,23 @@ void loop() {
     
     pumpON = pumpON & ~RUUKKU4 ;
     }
-  Serial.print(analogRead(A3));
-  delay(1000);
-   
+  
+
+   lcd.setCursor(0, 0);
+   lcd.print("R1");
+   lcd.setCursor( 5,0);
+   lcd.print(ruukku1.getVal());
+   lcd.setCursor( 8,0);
+   lcd.print("R2");
+   lcd.setCursor( 12,0);
+   lcd.print(ruukku2.getVal());
+
+   lcd.setCursor(0, 1);
+   lcd.print("R3");
+   lcd.setCursor( 5,1);
+   lcd.print(ruukku3.getVal());
+   lcd.setCursor( 8,1);
+   lcd.print("R4");
+   lcd.setCursor( 12,1);
+   lcd.print(ruukku4.getVal());
 }
